@@ -1,4 +1,5 @@
 var express = require('express');
+var favicon = require('serve-favicon')
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -9,10 +10,38 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+
+
+recs = [];
+
+//pg
+const { Pool, Client } = require('pg')
+
+const pool = new Pool({
+  user: 'jgfhvhabskheos',
+  host: 'ec2-54-247-119-167.eu-west-1.compute.amazonaws.com',
+  database: 'd9ojqd5uc7s2v0',
+  password: '3ea9f2ed6a86d0f0a58773b177a2f638efc773546a3ffefe2e7aadf6abe4d921',
+  port: 5432,
+  ssl: true,
+})
+
+pool.query('SELECT * from custpermissions1', (err, res) => {
+//   console.log(err, res);
+  recs = res.rows;
+  console.dir(recs);
+  pool.end();
+});
+
+
+//pg
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -24,6 +53,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+
+app.get('/', function(req, res) {
+    console.log("routing to index.html...");
+    console.dir(this.recs)
+    res.sendFile(path.join(__dirname + '/index.html'),this.recs);
+});
+
+app.post('/permission/save', function(req, res) {
+    console.log("POST routing to save...");
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -44,8 +83,6 @@ app.use(function(err, req, res, next) {
 });
 
 
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
-});
+
 
 module.exports = app;
