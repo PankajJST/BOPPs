@@ -1,5 +1,4 @@
 var express = require('express');
-var favicon = require('serve-favicon')
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -8,14 +7,15 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var listjobs = require('./routes/listjobs');
 
 var app = express();
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 
 recs = [];
 
-//pg
+//pg connection
 const { Pool, Client } = require('pg')
 
 const pool = new Pool({
@@ -27,15 +27,14 @@ const pool = new Pool({
   ssl: true,
 })
 
-pool.query('SELECT * from custpermissions1', (err, res) => {
+pool.query('SELECT * from custpermissions', (err, res) => {
 //   console.log(err, res);
   recs = res.rows;
   console.dir(recs);
   pool.end();
 });
 
-
-//pg
+//pg connection
 
 
 
@@ -44,7 +43,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -53,6 +52,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
+app.use('/listjobs', listjobs);
+
+
+app.get('/listJobs', function(req, res) {
+    console.log("routing to listJobs...");
+    console.dir(this.recs)
+    res.sendFile(path.join(__dirname + '/listJobs'),this.recs);
+});
 
 app.get('/', function(req, res) {
     console.log("routing to index.html...");

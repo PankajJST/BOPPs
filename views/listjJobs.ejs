@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>BOPPS</title>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
 </head>
 
 <body style="background-color: rgb(241, 230, 216)">
@@ -59,6 +60,18 @@
     <td colspan="2"><input type="submit" value="Submit"></td>
 
     </form>
+
+
+    <h2>Loop</h2>
+
+    <ul>
+        <% recs.forEach(function(rec) { %>
+        <li>
+            <%= rec.name, rec.address %> -
+            <%= rec.address %>
+        </li>
+        <% }); %>
+    </ul>
 
 </body>
 

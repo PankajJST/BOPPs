@@ -1,0 +1,44 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BOPPS</title>
+    <script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>
+</head>
+
+<body style="background-color: rgb(241, 230, 216)">
+
+    <h1 style="color: blue">BOPPS</h1>
+    <h2>Permissions Received</h2>
+
+    <table>
+        <tr>
+            <th>Job No</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Telephone</th>
+            <th>Owner Name</th>
+            <th>Owner Address</th>
+            <th>Owner Telephone</th>
+            <th>Actioned</th>
+          </tr>
+          <% recs.forEach(function(rec) { %>
+          <tr>
+            <td><%=rec.jobno%></td>
+            <td><%=rec.name%></td>
+            <td><%=rec.address%></td>
+            <td><%=rec.tel%></td>
+            <td><%=rec.ownername%></td>
+            <td><%=rec.owneraddress%></td>
+            <td><%=rec.ownertel%></td>
+            <td><%=rec.date%></td>
+            <td><%=rec.actioned%></td>
+          </tr>
+          <% }); %>
+    </table>
+
+</body>
+
+</html>
