@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var listjobs = require('./routes/listjobs');
+var savepermission = require('./routes/savepermission');
 
 var app = express();
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
@@ -16,26 +17,33 @@ var app = express();
 recs = [];
 
 //pg connection
-const { Pool, Client } = require('pg')
+const {
+    Pool,
+    Client
+} = require('pg')
 
 const pool = new Pool({
-  user: 'jgfhvhabskheos',
-  host: 'ec2-54-247-119-167.eu-west-1.compute.amazonaws.com',
-  database: 'd9ojqd5uc7s2v0',
-  password: '3ea9f2ed6a86d0f0a58773b177a2f638efc773546a3ffefe2e7aadf6abe4d921',
-  port: 5432,
-  ssl: true,
+    user: 'jgfhvhabskheos',
+    host: 'ec2-54-247-119-167.eu-west-1.compute.amazonaws.com',
+    database: 'd9ojqd5uc7s2v0',
+    password: '3ea9f2ed6a86d0f0a58773b177a2f638efc773546a3ffefe2e7aadf6abe4d921',
+    port: 5432,
+    ssl: true,
 })
 
 pool.query('SELECT * from custpermissions', (err, res) => {
-//   console.log(err, res);
-  recs = res.rows;
-  console.dir(recs);
-  pool.end();
+    //   console.log(err, res);
+    recs = res.rows;
+    console.dir(recs);
+    pool.end();
 });
 
 //pg connection
 
+app.use(function (req,res,next) {
+    console.log("/" + req.method);
+    next();
+  });
 
 
 // view engine setup
@@ -46,40 +54,50 @@ app.set('view engine', 'ejs');
 app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
 app.use('/listjobs', listjobs);
+app.use('/savepermission', savepermission);
 
+app.post('/savepermission', function (req, res) {
+    // res.send('respond with a job list resource');
+    console.log("inserting name..." + req.body.custname);
+    res.render('listjobs', {
+        title: 'Express'
+    });
+});
 
-app.get('/listJobs', function(req, res) {
+app.get('/listJobs', function (req, res) {
     console.log("routing to listJobs...");
     console.dir(this.recs)
-    res.sendFile(path.join(__dirname + '/listJobs'),this.recs);
+    res.sendFile(path.join(__dirname + '/listJobs'), this.recs);
 });
 
-app.get('/', function(req, res) {
+app.get('/', function (req, res) {
     console.log("routing to index.html...");
     console.dir(this.recs)
-    res.sendFile(path.join(__dirname + '/index.html'),this.recs);
+    res.sendFile(path.join(__dirname + '/index.html'), this.recs);
 });
 
-app.post('/permission/save', function(req, res) {
+app.post('/permission/save', function (req, res) {
     console.log("POST routing to save...");
 });
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
     var err = new Error('Not Found');
     err.status = 404;
     next(err);
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
