@@ -52,6 +52,9 @@ app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public/images', 'favicon.ico')));
+app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); 
+app.use('/js', express.static(__dirname + '/node_modules/jquery/dist'));
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css')); 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -65,29 +68,26 @@ app.use('/users', users);
 app.use('/listjobs', listjobs);
 app.use('/savepermission', savepermission);
 
-app.post('/savepermission', function (req, res) {
-    // res.send('respond with a job list resource');
-    console.log("inserting name..." + req.body.custname);
-    res.render('listjobs', {
-        title: 'Express'
-    });
-});
+// app.post('/savepermission', function (req, res) {
+//     // res.send('respond with a job list resource');
+//     console.log("inserting name..." + req.body.custname);
+//     res.render('listjobs', {
+//         title: 'Express'
+//     });
+// });
 
-app.get('/listJobs', function (req, res) {
-    console.log("routing to listJobs...");
-    console.dir(this.recs)
-    res.sendFile(path.join(__dirname + '/listJobs'), this.recs);
-});
+// app.get('/listJobs', function (req, res) {
+//     console.log("routing to listJobs...");
+//     console.dir(this.recs)
+//     res.sendFile(path.join(__dirname + '/listJobs'), this.recs);
+// });
 
-app.get('/', function (req, res) {
-    console.log("routing to index.html...");
-    console.dir(this.recs)
-    res.sendFile(path.join(__dirname + '/index.html'), this.recs);
-});
+// app.get('/', function (req, res) {
+//     console.log("routing to index.html...");
+//     console.dir(this.recs)
+//     res.sendFile(path.join(__dirname + '/index.html'), this.recs);
+// });
 
-app.post('/permission/save', function (req, res) {
-    console.log("POST routing to save...");
-});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

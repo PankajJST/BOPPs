@@ -1,71 +1,91 @@
 <html lang="en">
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
     <title>Burst On Private Property</title>
 </head>
 
-<body style="background-color: rgb(230, 238, 246)">
+<body style="background-color: rgb(230, 238, 246)" padding="10 10 10 10">
     <img src="/images/stw-logo.png" height="40" width="100"></img>
     <h1 style="color: blue">Burst On Private Property</h1>
     <h2 style="color: blue">Leak on private supply pipe - permission proforma</h2>
     <h3> Please note, any alteration to this document renders this Contract null and void.
     </h3>
 
-    <form name="form1" method="POST" action="checkinput()"></form>
-    <label>Name</label>
-    <input type="text" name="custname" size=40 placeholder="Enter name"></input>
-    <p></p>
-    <label>Job Address</label>
-    <input type="text" name="custaddress" size=60 placeholder="Enter address"></input>
-    <p></p>
-    <label>Phone</label>
-    <input type="text" name="custphone" size=15 placeholder="Enter phone"></input>
-    <p></p>
- 
+    <form>
+        <div class="form-group">
+            <label for="custname1">Name</label>
+            <input type="text" required class="form-control" id="custname1" aria-describedby="nameHelp" placeholder="Enter name">
+            <small id="nameHelp" class="form-text text-muted">Enter your name here.</small>
+        </div>
 
-    <label>Owner's Name (if different to above)</label>
-    <input type="text" name="ownername" psize=40 laceholder="Enter owner's name"></input>
-    <p></p>
-    <label>Owner's Address (if different to above)</label>
-    <input type="text" name="owneraddress" size=60 placeholder="Enter owner's address"></input>
-    <p></p>
-    <label>Owner's Phone (if different to above)</label>
-    <input type="text" name="ownerphone" size=15 placeholder="Enter owner's phone"></input>
-    <p></p>
+        <div class="form-group">
+            <label for="jobaddr1">Job Address</label>
+            <input type="text" required class="form-control" id="jobaddr1" aria-describedby="jobAddrHelp" placeholder="Enter job address">
+            <small id="jobAddrHelp" class="form-text text-muted">Enter the job address here.</small>
+        </div>
 
-    <input type="checkbox"></input>
-    <label>I can confirm that I am the owner of the property input above in “Job Address”</label>
-    <p></p>
-    <input type="checkbox"></input>
-    <label>I wish for Severn Trent to repair the leaking pipe supplying my property and hereby authorise access to my
-        property. I understand that it may not be possible for Severn Trent to carry out the repair and that it will be
-        my responsibility to arrange for the final reinstatement of any excavated surfaces to be carried out at my
-        cost”</label>
-    <p></p>
-    <input type="checkbox"></input>
-    <label>I have read the letter and information sheet and agree to the conditions”</label>
-    <p></p>
+        <div class="form-group">
+            <label for="custphone1">Daytime Tel</label>
+            <input type="tel" required class="form-control" id="custphone1" aria-describedby="phoneHelp" placeholder="Enter phone">
+            <small id="jobAddrHelp" class="form-text text-muted">Enter the daytime tel here</small>
+        </div>
 
-    <label>Date</label>
-    <input type="date" name="date" placeholder="Enter date"></input>
-    <p></p>
+        <div class="form-group">
+            <label for="ownername1">Owner Name</label>
+            <input type="text" class="form-control" id="ownername1" aria-describedby="ownerHelp" placeholder="Enter owner's name">
+            <small id="ownerHelp" class="form-text text-muted">Enter your owner's name here if different from job
+                address above</small>
+        </div>
 
+        <div class="form-group">
+            <label for="owneraddr1">Owner Address</label>
+            <input type="text" class="form-control" id="owneraddr1" aria-describedby="ownerAddrHelp" placeholder="Enter owner's address">
+            <small id="ownerAddrHelp" class="form-text text-muted">Enter the owner's address here</small>
+        </div>
+
+        <div class="form-group">
+            <label for="ownerphone1">Owner Daytime Tel</label>
+            <input type="tel" class="form-control" id="ownerphone1" aria-describedby="ownerHelp" placeholder="Enter owner's phone">
+            <small id="jobAddrHelp" class="form-text text-muted">Enter the owner's daytime tel here</small>
+        </div>
 
 
 
-    <td colspan="2"><input type="submit" value="Submit"></td>
+        <div class="form-group form-check">
+            <input type="checkbox" required class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">I can confirm that I am the owner of the property input
+                above in Job Address.</label>
+        </div>
+
+        <div class="form-group form-check">
+            <input type="checkbox" required class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">I wish for Severn Trent to repair the leaking pipe
+                supplying my property and hereby authorise access to
+                my
+                property. I understand that it may not be possible for Severn Trent to carry out the repair and that it
+                will be
+                my responsibility to arrange for the final reinstatement of any excavated surfaces to be carried out at
+                my
+                cost.</label>
+        </div>
+
+        <div class="form-group form-check">
+            <input type="checkbox" required class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1"> I have read the letter and information sheet and agree
+                to the conditions.</label>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Submit form</button>
 
     </form>
 
-    <script>
-    function checkinput() {
-        console.dir(form1);
-    }
-    </script>
-
 </body>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
 </html>
