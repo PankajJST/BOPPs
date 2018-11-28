@@ -20,7 +20,7 @@ recs = [];
 const {
     Pool,
     Client
-} = require('pg')
+} = require('pg');
 
 const pool = new Pool({
     user: 'jgfhvhabskheos',
@@ -41,7 +41,7 @@ pool.query('SELECT * from custpermissions', (err, res) => {
 //pg connection
 
 app.use(function (req,res,next) {
-    console.log("/" + req.method);
+    console.log("received incoming.../" + req.method);
     next();
   });
 
@@ -67,6 +67,15 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/listjobs', listjobs);
 app.use('/savepermission', savepermission);
+
+// app.post('/savepermission', function(req, res) {
+//     console.log({req});
+//     // console.log({req.body});
+//     var user_id = req.body.custname1;
+//     var user_address = req.body.jobaddr1;
+
+//     res.send(user_id + ' ' + user_address);
+// });
 
 // app.post('/savepermission', function (req, res) {
 //     // res.send('respond with a job list resource');

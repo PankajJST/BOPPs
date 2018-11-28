@@ -11,35 +11,53 @@
 <body style="background-color: rgb(230, 238, 246)">
 
     <img src="/images/stw-logo.png" height="40" width="100"></img>
-
-    <h1 style="color: blue">BOPPS</h1>
-    <h2>Customer Permissions Received</h2>
-
-    <table>
-        <tr>
-            <th>Job No</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Telephone</th>
-            <th>Owner Name</th>
-            <th>Owner Address</th>
-            <th>Owner Telephone</th>
-            <th>Actioned</th>
-          </tr>
-          <% recs.forEach(function(rec) { %>
-          <tr>
-            <td><%=rec.jobno%></td>
-            <td><%=rec.name%></td>
-            <td><%=rec.address%></td>
-            <td><%=rec.tel%></td>
-            <td><%=rec.ownername%></td>
-            <td><%=rec.owneraddress%></td>
-            <td><%=rec.ownertel%></td>
-            <td><%=rec.date%></td>
-            <td><%=rec.actioned%></td>
-          </tr>
-          <% }); %>
-    </table>
+    <h2 style="color: blue">Burst On Private Property</h2>
+    <p></p>
+    <h3>Customer Permissions Received</h2>
+        <p></p>
+        <table>
+            <tr>
+                <th>Job No</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Telephone</th>
+                <th>Owner Name</th>
+                <th>Owner Address</th>
+                <th>Owner Telephone</th>
+                <th>Actioned</th>
+            </tr>
+            <% recs.forEach(function(rec) { %>
+            <tr>
+                <td>
+                    <%=rec.jobno%>
+                </td>
+                <td>
+                    <%=rec.name%>
+                </td>
+                <td>
+                    <%=rec.address%>
+                </td>
+                <td>
+                    <%=rec.tel%>
+                </td>
+                <td>
+                    <%=rec.ownername%>
+                </td>
+                <td>
+                    <%=rec.owneraddress%>
+                </td>
+                <td>
+                    <%=rec.ownertel%>
+                </td>
+                <td>
+                    <%=rec.date%>
+                </td>
+                <td>
+                    <%=rec.actioned%>
+                </td>
+            </tr>
+            <% }); %>
+        </table>
 
 </body>
 
