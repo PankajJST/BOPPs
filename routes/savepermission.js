@@ -1,17 +1,21 @@
 var express = require('express');
 var router = express.Router();
 
+var custDetails;
+
 // /* POST users listing. */
 router.post('/', function(req, res) {
-  console.log('Post a permission: ' + JSON.stringify(req.body));
+  custDetails = JSON.stringify(req.body);
+  console.log('Posted a permission for custDetails:' + custDetails);
+  
   // res.send('respond with a job list resource');
   console.dir(req.body);
 
-  console.log("inserting name..." +req.body.custname1);
+  // console.log("inserting name..." +custDetails.custname1);
 
-  setTimeout(() => {
+ 
      res.render('endpage', { title: 'Express' });
-  }, 3000);
+ 
 });
 
 /* POST users listing. */

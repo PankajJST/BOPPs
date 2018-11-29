@@ -15,7 +15,7 @@
 
     <h3>Customer Permissions Received</h2>
         <p></p>
-        <table>
+        <table class="table">
             <tr>
                 <th>Job No</th>
                 <th>Name</th>
@@ -24,7 +24,9 @@
                 <th>Owner Name</th>
                 <th>Owner Address</th>
                 <th>Owner Telephone</th>
-                <th>Actioned</th>
+                <th>Date</th>
+                <th>Done?</th>
+                <th>Download</th>
             </tr>
             <% recs.forEach(function(rec) { %>
             <tr>
@@ -53,7 +55,11 @@
                     <%=rec.date%>
                 </td>
                 <td>
-                    <%=rec.actioned%>
+                    <input type="checkbox">
+                </td>
+                <td>
+                    <input type="file" name="download">
+                    </input
                 </td>
             </tr>
             <% }); %>
