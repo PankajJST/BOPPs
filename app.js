@@ -31,7 +31,7 @@ const pool = new Pool({
     ssl: true,
 })
 
-pool.query('SELECT * from custpermissions', (err, res) => {
+pool.query('SELECT * from custpermissions order by id', (err, res) => {
     //   console.log(err, res);
     recs = res.rows;
     console.dir(recs);
