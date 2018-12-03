@@ -10,35 +10,14 @@ var users = require('./routes/users');
 var listjobs = require('./routes/listjobs');
 var savepermission = require('./routes/savepermission');
 
+var appvar1 = '1234';
+var pgp = require('pg-promise')(/*options*/);
+const db = pgp(process.env.DATABASE_URL || 'postgres://jgfhvhabskheos:3ea9f2ed6a86d0f0a58773b177a2f638efc773546a3ffefe2e7aadf6abe4d921@ec2-54-247-119-167.eu-west-1.compute.amazonaws.com:5432/d9ojqd5uc7s2v0?ssl=true');
+
 var app = express();
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
-
 recs = [];
-
-//pg connection
-const {
-    Pool,
-    Client
-} = require('pg');
-
-const pool = new Pool({
-    user: 'jgfhvhabskheos',
-    host: 'ec2-54-247-119-167.eu-west-1.compute.amazonaws.com',
-    database: 'd9ojqd5uc7s2v0',
-    password: '3ea9f2ed6a86d0f0a58773b177a2f638efc773546a3ffefe2e7aadf6abe4d921',
-    port: 5432,
-    ssl: true,
-})
-
-pool.query('SELECT * from custpermissions order by id', (err, res) => {
-    //   console.log(err, res);
-    recs = res.rows;
-    console.dir(recs);
-    pool.end();
-});
-
-//pg connection
 
 app.use(function (req,res,next) {
     console.log("received incoming.../" + req.method);
@@ -58,7 +37,7 @@ app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: true
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
