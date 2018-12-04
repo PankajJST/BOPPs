@@ -8,7 +8,7 @@
     <title>Burst On Private Property</title>
 </head>
 
-<body class= "container mt-4"  style="background-color: rgb(230, 238, 246)">
+<body class="container mt-4" style="background-color: rgb(230, 238, 246)">
     <!-- <img src="/images/stw-logo.png" height="40" width="100"></img> -->
     <img src="./images/stw-logo.png" height="80" width="200" class="img-fluid float-right" alt="STW" class="img-fluid">
     <h2 class="display-4" style="color: rgb(11, 86, 164)">Burst On Private Property</h2>
@@ -19,39 +19,51 @@
     <form action="/savepermission" method="POST">
         <div class="form-group">
             <label for="custname1">Name</label>
-            <input type="text" required name= "custname1" class="form-control" id="custname1" aria-describedby="nameHelp" placeholder="Enter name">
+            <input type="text" required name="custname1" class="form-control" id="custname1" aria-describedby="nameHelp"
+                placeholder="Enter name">
             <small id="nameHelp" class="form-text text-muted">Enter your name here.</small>
         </div>
 
         <div class="form-group">
             <label for="jobaddr1">Job Address</label>
-            <input type="text" required name="jobaddr1" class="form-control" id="jobaddr1" aria-describedby="jobAddrHelp" placeholder="Enter job address">
+            <input type="text" required name="jobaddr1" class="form-control" id="jobaddr1" aria-describedby="jobAddrHelp"
+                placeholder="Enter job address">
             <small id="jobAddrHelp" class="form-text text-muted">Enter the job address here.</small>
         </div>
 
         <div class="form-group">
-            <label for="custphone1">Daytime Tel</label>
-            <input type="tel" required name="custphone1" class="form-control" id="custphone1" aria-describedby="phoneHelp" placeholder="Enter phone">
+            <label for="custphone1">Daytime Phone No.</label>
+            <input type="tel" required name="custphone1" class="form-control" id="custphone1" aria-describedby="phoneHelp"
+                placeholder="Enter phone">
             <small id="jobAddrHelp" class="form-text text-muted">Enter the daytime phone here</small>
         </div>
 
+
+
+
         <div class="form-group">
-            <label for="ownername1">Owner Name</label>
-            <input type="text" name="ownername1" class="form-control" id="ownername1" aria-describedby="ownerHelp" placeholder="Enter owner's name">
+            <label for="ownername1" data-toggle="collapse" href="#collapseOwnerDets">Owner's Name if different
+                (landlord etc.)</label>
+            <input type="text" name="ownername1" class="form-control" id="ownername1" aria-describedby="ownerHelp"
+                placeholder="Enter owner's name">
             <small id="ownerHelp" class="form-text text-muted">Enter your owner's name here if different from job
                 address above</small>
         </div>
 
-        <div class="form-group">
-            <label for="owneraddr1">Owner Address</label>
-            <input type="text" name="owneraddr1" class="form-control" id="owneraddr1" aria-describedby="ownerAddrHelp" placeholder="Enter owner's address">
-            <small id="ownerAddrHelp" class="form-text text-muted">Enter the owner's address here</small>
-        </div>
+        <div class="collapse" id="collapseOwnerDets">
+            <div class="form-group">
+                <label for="owneraddr1">Owner's Address</label>
+                <input type="text" name="owneraddr1" class="form-control" id="owneraddr1" aria-describedby="ownerAddrHelp"
+                    placeholder="Enter owner's address">
+                <small id="ownerAddrHelp" class="form-text text-muted">Enter the owner's address here</small>
+            </div>
 
-        <div class="form-group">
-            <label for="ownerphone1">Owner Daytime Tel</label>
-            <input type="tel" name="ownerphone1" class="form-control" id="ownerphone1" aria-describedby="ownerHelp" placeholder="Enter owner's phone">
-            <small id="jobAddrHelp" class="form-text text-muted">Enter the owner's daytime phone here</small>
+            <div class="form-group">
+                <label for="ownerphone1">Owner's Daytime Phone No.</label>
+                <input type="tel" name="ownerphone1" class="form-control" id="ownerphone1" aria-describedby="ownerHelp"
+                    placeholder="Enter owner's phone">
+                <small id="jobAddrHelp" class="form-text text-muted">Enter the owner's daytime phone here</small>
+            </div>
         </div>
 
 
@@ -88,5 +100,20 @@
 
 <script src="/js/jquery.min.js"></script>
 <script src="/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#ownername1").on('input', function () {
+            console.log('data entered');
+            $(".collapse").collapse("show");
+        });
+        $("#ownername1").on('blur', function () {
+            if (!$.trim(this.value).length) { // zero-length string AFTER a trim
+                console.log('data erased');
+                $(".collapse").collapse("hide");
+            }
+        });
+    });
+</script>
 
 </html>
