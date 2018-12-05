@@ -24,6 +24,7 @@ router.get('/', function (req, res, next) {
       // console.dir(data);
       envDBURL = process.env.DATABASE_URL|| 'not found';
       console.log('the environment DB URL is:'+envDBURL);
+      envDBURLHint = envDBURL.substr(envDBURL.length-15);
       recs = data;
 
       recs.forEach(rec => {
