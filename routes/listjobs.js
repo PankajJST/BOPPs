@@ -12,6 +12,8 @@ router.get('/', function (req, res, next) {
 
   console.log('moment is ' + moment().format('DD/MM/YYYY'));
 
+  console.log('the environment DB URL is:'+process.env.DATABASE_URL);
+
   // db.manyOrNone('SELECT * from custpermissions order by date desc', 123)
   db.manyOrNone(sqlSelect, 123)
     .then(function (data) {

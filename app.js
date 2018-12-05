@@ -47,40 +47,6 @@ app.use('/users', users);
 app.use('/listjobs', listjobs);
 app.use('/savepermission', savepermission);
 
-app.get('/', function(req, res){
-    res.sendfile('index.ejs', { root: __dirname + "/relative_path_of_file" } );
-});
-
-// app.post('/savepermission', function(req, res) {
-//     console.log({req});
-//     // console.log({req.body});
-//     var user_id = req.body.custname1;
-//     var user_address = req.body.jobaddr1;
-
-//     res.send(user_id + ' ' + user_address);
-// });
-
-// app.post('/savepermission', function (req, res) {
-//     // res.send('respond with a job list resource');
-//     console.log("inserting name..." + req.body.custname);
-//     res.render('listjobs', {
-//         title: 'Express'
-//     });
-// });
-
-// app.get('/listJobs', function (req, res) {
-//     console.log("routing to listJobs...");
-//     console.dir(this.recs)
-//     res.sendFile(path.join(__dirname + '/listJobs'), this.recs);
-// });
-
-// app.get('/', function (req, res) {
-//     console.log("routing to index.html...");
-//     console.dir(this.recs)
-//     res.sendFile(path.join(__dirname + '/index.html'), this.recs);
-// });
-
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
     var err = new Error('Not Found');
@@ -97,7 +63,7 @@ app.use(function (err, req, res, next) {
     // render the error page
     res.status(err.status || 500);
     // res.render('index');
-    res.render('error');
+    res.render('index');
 });
 
 

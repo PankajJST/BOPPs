@@ -115,12 +115,14 @@
 <script>
     $(document).ready(function () {
         $("#ownername1").on('input', function () {
-            console.log('data entered');
+            console.log('owner data entered');
             $(".collapse").collapse("show");
         });
         $("#ownername1").on('blur', function () {
             if (!$.trim(this.value).length) { // zero-length string AFTER a trim
-                console.log('data erased');
+                console.log('owner name erased');
+                $("#owneraddr1").val('');
+                $("#ownerphone1").val('');
                 $(".collapse").collapse("hide");
             }
         });
