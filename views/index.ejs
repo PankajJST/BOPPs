@@ -88,10 +88,21 @@
 
         <div class="form-group form-check">
             <input type="checkbox" required class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1"> I have read the letter and information sheet and agree
+            <label class="form-check-label" for="exampleCheck1"> I have read the letter and <a data-toggle="collapse"
+                    href="#collapseInfoSheet" aria-expanded="false" aria-controls="collapseInfoSheet">
+                    information sheet</a> and agree
                 to the conditions.</label>
         </div>
 
+        <div class="collapse" id="collapseInfoSheet">
+            <div class="card card-body">
+                This is the information sheet details...fdhjbdff dh fhd hd hf adhsf dshf ds n dff j fda sfan fdff na nf fjidansfa fdjf.
+                <br>Second line fjndsjnaf jdhafahf djsff ajdadffds.
+                <br>Last line jdnjsgndfndjgdffgfdgdgfg. 
+            </div>
+        </div>
+
+        <p></p>
         <button class="btn btn-primary" type="submit">Submit form</button>
 
     </form>

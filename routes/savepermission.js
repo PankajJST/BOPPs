@@ -15,7 +15,7 @@ router.post('/', function (req, res, next) {
   console.log('Posted a permission for custDetails:' + custDetails);
 
   db.none('insert into custpermissions (jobno, name,address,tel,ownername,owneraddress,ownertel)' +
-      ' values ($1, $2, $3, $4, $5, $6, $7)' , ['121211', custDetails.custname1, custDetails.jobaddr1, custDetails.custphone1, custDetails.ownername1, custDetails.owneraddr1, custDetails.ownerphone1])
+      ' values ($1, $2, $3, $4, $5, $6, $7)' , ['1', custDetails.custname1, custDetails.jobaddr1, custDetails.custphone1, custDetails.ownername1, custDetails.owneraddr1, custDetails.ownerphone1])
     .then(function () {
       console.log('Successful Insertion!!');
       res.render('endpage', {

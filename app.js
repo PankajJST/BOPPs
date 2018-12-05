@@ -47,6 +47,10 @@ app.use('/users', users);
 app.use('/listjobs', listjobs);
 app.use('/savepermission', savepermission);
 
+app.get('/', function(req, res){
+    res.sendfile('index.ejs', { root: __dirname + "/relative_path_of_file" } );
+});
+
 // app.post('/savepermission', function(req, res) {
 //     console.log({req});
 //     // console.log({req.body});
@@ -92,6 +96,7 @@ app.use(function (err, req, res, next) {
 
     // render the error page
     res.status(err.status || 500);
+    // res.render('index');
     res.render('error');
 });
 
